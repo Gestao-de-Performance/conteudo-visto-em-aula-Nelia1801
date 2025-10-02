@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Projeto do Professor — Meu Site</title>
+
+    <!-- Estilos principais (embed para facilitar) -->
+    <style>
+        :root{
+            --bg:#0f1724;
+            --card:#0b1220;
+            --muted:#9aa4b2;
+            --accent:#1fb6ff;
+            --glass: rgba(255,255,255,0.04);
+            --radius:12px;
+            --maxw:1100px;
+            --gap:18px;
+            --ff: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0;
+            font-family:var(--ff);
+            background: linear-gradient(180deg, #071024 0%, #0c1522 100%);
+            color:#e6eef8;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            line-height:1.45;
+            padding:24px;
+            display:flex;
+            justify-content:center;
+        }
+
+        .wrap{
+            width:100%;
+            max-width:var(--maxw);
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border-radius:16px;
+            padding:28px;
+            box-shadow: 0 8px 30px rgba(2,6,23,0.7);
+            backdrop-filter: blur(6px);
+        }
+
+        header{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:var(--gap);
+        }
+        .brand{
+            display:flex;
+            gap:12px;
+            align-items:center;
+        }
+        .logo{
+            width:48px;
+            height:48px;
+            border-radius:10px;
+            background:linear-gradient(135deg,var(--accent), #6ee7f7);
+            display:grid;
+            place-items:center;
+            color:#042033;
+            font-weight:700;
+            font-size:18px;
+            box-shadow: 0 6px 18px rgba(31,182,255,0.12);
+        }
+        h1{font-size:18px;margin:0}
+        p.lead{margin:0;color:var(--muted);font-size:13px}
+
+        nav{
+            display:flex;
+            align-items:center;
+            gap:18px;
+        }
+        .nav-links{
+            display:flex;
+            gap:14px;
+            align-items:center;
+        }
+        .nav-links a{
+            color:var(--muted);
+            text-decoration:none;
+            font-size:14px;
+            padding:8px 10px;
+            border-radius:8px;
+        }
+        .nav-links a:hover{color:#fff;background:var(--glass)}
+
+        .btn{
+            background:var(--accent);
+            color:#042033;
+            padding:8px 12px;
+            border-radius:10px;
+            text-decoration:none;
+            font-weight:600;
+            box-shadow: 0 6px 12px rgba(31,182,255,0.14);
+        }
+
+        /* mobile menu button */
+        .menu-btn{display:none; background:none; border:0; color:var(--muted); font-size:20px}
+
+        main{
+            margin-top:26px;
+            display:grid;
+            gap:18px;
+        }
+
+        .hero{
+            background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border-radius:12px;
+            padding:28px;
+            display:flex;
+            gap:20px;
+            align-items:center;
+            justify-content:space-between;
+        }
+        .hero .text h2{margin:0 0 8px 0;font-size:22px}
+        .hero .text p{margin:0;color:var(--muted)}
+
+        .hero .actions{display:flex;gap:12px;align-items:center}
+        .hero .actions a{padding:10px 14px;border-radius:10px;text-decoration:none}
+        .secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+        .primary{background:var(--accent);color:#042033;font-weight:700}
+
+        /* cards */
+        .grid{
+            display:grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap:16px;
+        }
+        .card{
+            background:linear-gradient(180deg,rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+            border-radius:12px;
+            padding:16px;
+            min-height:120px;
+        }
+        .card h3{margin:0 0 8px 0;font-size:16px}
+        .card p{margin:0;color:var(--muted);font-size:13px}
+
+        footer{
+            margin-top:18px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            color:var(--muted);
+            font-size:13px;
+        }
+
+        /* responsivo */
+        @media (max-width:900px){
+            .grid{grid-template-columns: repeat(2, 1fr)}
+        }
+        @media (max-width:680px){
+            body{padding:12px}
+            header{align-items:flex-start;flex-direction:column;gap:12px}
+            nav{width:100%;justify-content:space-between}
+            .nav-links{display:none}
+            .menu-btn{display:inline-block}
+            .hero{flex-direction:column;align-items:flex-start}
+            .grid{grid-template-columns: 1fr}
+        }
+
+        /* simples painel de demonstração (opcional) */
+        .small-note{
+            margin-top:6px;
+            font-size:12px;
+            color:var(--muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap" role="document">
+        <header>
+            <div class="brand">
+                <div class="logo" aria-hidden="true">MS</div>
+                <div>
+                    <h1>Meu Site do Professor</h1>
+                    <p class="lead">Projeto exemplo — HTML, CSS e JS</p>
+                </div>
+            </div>
+
+            <nav aria-label="Navegação principal">
+                <button class="menu-btn" aria-expanded="false" aria-controls="menu" id="menuToggle">☰</button>
+
+                <div class="nav-links" id="menu" role="navigation">
+                    <a href="#home">Início</a>
+                    <a href="#sobre">Sobre</a>
+                    <a href="#projetos">Projetos</a>
+                    <a href="#contato">Contato</a>
+                </div>
+
+                <a class="btn" href="#projetos">Ver projeto</a>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Hero / Apresentação -->
+            <section class="hero" id="home" aria-labelledby="heroTitle">
+                <div class="text">
+                    <h2 id="heroTitle">Bem-vindo ao site do seu professor</h2>
+                    <p>Este é um template inicial. Você pode editar texto, cores e estruturar o conteúdo para praticar.</p>
+                    <p class="small-note">Abra o arquivo no navegador para ver o site funcionando.</p>
+                </div>
+
+                <div class="actions">
+                    <a class="primary" href="#projetos">Começar</a>
+                    <a class="secondary" href="#sobre">Mais informações</a>
+                </div>
+            </section>
+
+            <!-- Cards / Conteúdo -->
+            <section id="projetos" aria-labelledby="projTitle">
+                <h2 id="projTitle" style="margin:0 0 12px 0">Projetos</h2>
+
+                <div class="grid">
+                    <article class="card" aria-labelledby="c1">
+                        <h3 id="c1">Projeto 1</h3>
+                        <p>Descrição curta do projeto ou atividade prática. Adicione imagem ou links se precisar.</p>
+                    </article>
+
+                    <article class="card" aria-labelledby="c2">
+                        <h3 id="c2">Projeto 2</h3>
+                        <p>Outra atividade — experimente adicionar um vídeo ou um iframe.</p>
+                    </article>
+
+                    <article class="card" aria-labelledby="c3">
+                        <h3 id="c3">Projeto 3</h3>
+                        <p>Exercícios: HTML semântico, CSS responsivo e pequenos scripts em JavaScript.</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Sobre -->
+            <section id="sobre" style="margin-top:10px;" aria-labelledby="sobreTitle">
+                <h2 id="sobreTitle">Sobre o site</h2>
+                <p style="color:var(--muted); margin-top:6px">
+                    Esse é um esqueleto para você trabalhar. Substitua textos, adicione imagens (<code>&lt;img&gt;</code>),
+                    formulários e links. Se quiser, eu testo alterações que você fizer.
+                </p>
+            </section>
+
+            <!-- Contato simples -->
+            <section id="contato" style="margin-top:12px;" aria-labelledby="contatoTitle">
+                <h2 id="contatoTitle">Contato</h2>
+                <p style="color:var(--muted); margin-top:6px">Coloque aqui as informações de contato ou um formulário simples.</p>
+
+                <!-- Exemplo simples de formulário (não envia sem backend) -->
+                <form onsubmit="event.preventDefault(); alert('Formulário de exemplo — sem envio.');" style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+                    <input aria-label="nome" placeholder="Seu nome" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.05);background:transparent;color:inherit">
+                    <input aria-label="email" placeholder="Seu email" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.05);background:transparent;color:inherit">
+                    <button class="btn" type="submit" style="padding:10px 14px">Enviar</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <div>© <span id="year"></span> Meu Site — Exemplo</div>
+            <div style="color:var(--muted)">Feito para a aula • Template simples</div>
+        </footer>
+    </div>
+
+    <!-- Script pequeno para menu responsive e ano do rodapé -->
+    <script>
+        // atualiza o ano no rodapé
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // toggle menu mobile
+        const toggle = document.getElementById('menuToggle');
+        const menu = document.getElementById('menu');
+        toggle.addEventListener('click', () => {
+            const expanded = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', String(!expanded));
+            // mostra/esconde menu links
+            if(window.innerWidth <= 680){
+                menu.style.display = expanded ? 'none' : 'flex';
+                menu.style.flexDirection = 'column';
+                menu.style.gap = '8px';
+            }
+        });
+
+        // Garante que nav-links seja mostrado novamente ao redimensionar desktop
+        window.addEventListener('resize', () => {
+            if(window.innerWidth > 680){
+                menu.style.display = 'flex';
+                menu.style.flexDirection = 'row';
+            } else {
+                menu.style.display = 'none';
+                toggle.setAttribute('aria-expanded','false');
+            }
+        });
+
+        // Estado inicial
+        if(window.innerWidth <= 680){
+            menu.style.display = 'none';
+        }
+    </script>
+</body>
+</html>                      
